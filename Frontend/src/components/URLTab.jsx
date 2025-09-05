@@ -8,8 +8,26 @@ export default function URLTab() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    sendArticle(url);
     console.log("Submitting URL:", url);
   };
+
+  async function sendArticle(url) {
+    try {
+      const response = await fetch("/article", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      });
+
+      const data = await response.json();
+      console.log("Response from Flask:", data);
+    } catch (err) {
+      console.error("Error", err);
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit} className="url-form">
