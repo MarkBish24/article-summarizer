@@ -3,7 +3,7 @@ import "./URLTab.css";
 
 // Test Article https://www.aljazeera.com/news/liveblog/2025/9/5/live-israel-kills-18-overnight-as-intense-strikes-flatten-gaza-city
 
-export default function URLTab() {
+export default function URLTab({ setArticleData, setIsSubmittingUrl }) {
   const [url, setUrl] = useState("");
 
   const handleSubmit = (e) => {
@@ -23,6 +23,8 @@ export default function URLTab() {
       });
 
       const data = await response.json();
+      setArticleData(data);
+      setIsSubmittingUrl(false);
       console.log("Response from Flask:", data);
     } catch (err) {
       console.error("Error", err);

@@ -1,11 +1,24 @@
 import { useState } from "react";
 import URLTab from "./components/URLTab.jsx";
+import ArticleDisplay from "./components/ArticleDisplay.jsx";
 
 function App() {
-  const [articles, setArticles] = useState([]);
-  const [isSubmittingURL, setIsSubmittingUrl] = useState(true);
+  const [cachedArticles, setCachedArticles] = useState([]);
+  const [articleData, setArticleData] = useState({});
+  const [isSubmittingUrL, setIsSubmittingUrl] = useState(true);
 
-  return <>{isSubmittingURL ? <URLTab /> : null}</>;
+  return (
+    <>
+      {isSubmittingUrL ? (
+        <URLTab
+          setArticleData={setArticleData}
+          setIsSubmittingUrl={setIsSubmittingUrl}
+        />
+      ) : (
+        <ArticleDisplay articleData={articleData} />
+      )}
+    </>
+  );
 }
 
 export default App;

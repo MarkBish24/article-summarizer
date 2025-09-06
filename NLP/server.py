@@ -8,22 +8,24 @@ CORS(app)
 
 #Test Article https://www.aljazeera.com/news/liveblog/2025/9/5/live-israel-kills-18-overnight-as-intense-strikes-flatten-gaza-city
 
-@app.route("/summarize", methods=["GET", "POST"])
-def summarize_route():
-    data = request.get_json(silent=True)
+# *** OLD ROUTE TO SUMMARIZE DATA ***
 
-    if data and "text" in data:
-        text = data["text"]
-    else:
-        with open("text.txt", "r", encoding="utf-8") as f:
-            text = f.read()
+# @app.route("/summarize", methods=["GET", "POST"])
+# def summarize_route():
+#     data = request.get_json(silent=True)
 
-    if not text:
-        return jsonify({"error": "No text provided"}), 400
+#     if data and "text" in data:
+#         text = data["text"]
+#     else:
+#         with open("text.txt", "r", encoding="utf-8") as f:
+#             text = f.read()
+
+#     if not text:
+#         return jsonify({"error": "No text provided"}), 400
     
-    summary = summarizer.generate_summary(text)
+#     summary = summarizer.generate_summary(text)
 
-    return jsonify({"summary": summary})
+#     return jsonify({"summary": summary})
 
 @app.route("/article", methods=["POST"])
 def article_info_route():
