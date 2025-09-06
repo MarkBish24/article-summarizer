@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ArticleDisplay.css";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-export default function ArticleDisplay({ articleData }) {
+export default function ArticleDisplay({ articleData, setIsSubmittingUrl }) {
   const images = articleData.images || [];
   const [current, setCurrent] = useState(0);
 
@@ -49,6 +49,14 @@ export default function ArticleDisplay({ articleData }) {
           </div>
         </div>
       )}
+      <button
+        className="return-btn"
+        onClick={() => {
+          setIsSubmittingUrl(true);
+        }}
+      >
+        Summarize another article
+      </button>
     </div>
   );
 }

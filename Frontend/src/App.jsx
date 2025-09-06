@@ -15,7 +15,10 @@ function App() {
           setIsSubmittingUrl={setIsSubmittingUrl}
         />
       ) : (
-        <ArticleDisplay articleData={articleData} />
+        <ArticleDisplay
+          articleData={articleData}
+          setIsSubmittingUrl={setIsSubmittingUrl}
+        />
       )}
     </>
   );
