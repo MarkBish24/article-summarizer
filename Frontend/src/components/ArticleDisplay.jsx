@@ -15,6 +15,9 @@ export default function ArticleDisplay({ articleData }) {
       <h1>{articleData.title}</h1>
       <h2>{articleData.authors}</h2>
       <p>{articleData.summary}</p>
+      {articleData.images && articleData.images.length > 0 && (
+        <img src={articleData.images[0]} alt={articleData.title} />
+      )}
     </div>
   );
 }

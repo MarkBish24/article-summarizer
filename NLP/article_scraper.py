@@ -12,6 +12,8 @@ def scrape_article(url):
     text = article.text.strip()
     full_text = text
 
+    images = article.images if article.images else set()
+
     if len(text) < 200:
         print("Newpaper missed content, using alternate scraper")
         res = requests.get(url)
@@ -39,7 +41,8 @@ def scrape_article(url):
         "summary": summary,
         "text": full_text,
         "publish_date": publish_date,
-        "url": url
+        "url": url,
+        "images": list(images)
     }
 
     return article_data
