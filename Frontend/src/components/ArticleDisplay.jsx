@@ -1,22 +1,53 @@
 import { useState } from "react";
-
-// *** How the article data is organized
-// article_data = {
-//     "title": article.title,
-//     "authors": article.authors,
-//     "text": article.text,
-//     "publish_date": article.publish_date.isoformat() if article.publish_date else None,
-//     "url": url
-// }
+import "./ArticleDisplay.css";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 export default function ArticleDisplay({ articleData }) {
+  const images = articleData.images || [];
+  const [current, setCurrent] = useState(0);
+
+  const prevSlide = () =>
+    setCurrent((current - 1 + images.length) % images.length);
+  const nextSlide = () => setCurrent((current + 1) % images.length);
+
   return (
-    <div>
-      <h1>{articleData.title}</h1>
-      <h2>{articleData.authors}</h2>
-      <p>{articleData.summary}</p>
-      {articleData.images && articleData.images.length > 0 && (
-        <img src={articleData.images[0]} alt={articleData.title} />
+    <div className="article-container">
+      <h1 className="article-title">{articleData.title}</h1>
+      <h2 className="article-authors">
+        {articleData.authors?.length > 0
+          ? articleData.authors.join(", ")
+          : "Unknown author"}
+      </h2>
+      <p className="article-summary">{articleData.summary}</p>
+
+      {images.length > 0 && (
+        <div className="carousel-img-display" style={{ position: "relative" }}>
+          {/* Image */}
+          <img
+            className="article-img"
+            src={images[current]}
+            alt={`Slide ${current + 1}`}
+          />
+
+          {/* Buttons */}
+          <button className="carousel-btn left" onClick={prevSlide}>
+            <IoMdArrowDropdown style={{ transform: "rotate(90deg)" }} />
+          </button>
+          <button className="carousel-btn right" onClick={nextSlide}>
+            <IoMdArrowDropdown style={{ transform: "rotate(-90deg)" }} />
+          </button>
+
+          {/* HUD */}
+          <div className="carousel-hud">
+            {images.map((_, idx) => (
+              <span
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={idx === current ? "dot active" : "dot"}
+              ></span>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

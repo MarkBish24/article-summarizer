@@ -1,0 +1,82 @@
+.article-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.article-title {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.article-authors {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.article-summary {
+  font-size: 1.1em;
+  color: #333;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.article-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.carousel-img-display {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%; /* use right: 10px for the right arrow */
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 18px; /* optional */
+}
+
+.left {
+  left: 10px;
+}
+.right {
+  right: 10px;
+}
+
+/* HUD / Dots */
+.carousel-hud {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #fff;
+}
